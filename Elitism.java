@@ -3,13 +3,12 @@
  * Author: Charles Walker
  * Created: 11/08/23
  * Modified: 12/1/23
- * Fixed the bug causing the children to unintentually replicate in the population by having the createOffspring method reinitialize the 
+ * Fixed the bug causing the children to unintentionally replicate in the population by having the createOffspring method reinitialize the 
  * children arrays every time its called. 
  * 
  * Purpose: 
  * Selects the top percentage of the population to mate and survive into
- * the next generation. Creates 4 offspring that replace 4 of the lowest 
- * scoring population.
+ * the next generation. Creates 4 offspring that replace 4 of the lowest-scoring population.
  * 
  * Attributes:
  * 		-totSelected: double
@@ -63,45 +62,45 @@ public class Elitism {
 		child2 = new int[TOTGENES];
 		child3 = new int[TOTGENES];
 		child4 = new int[TOTGENES];
-    	child1[0] = 0;
-    	child2[0] = 0;
-    	child3[0] = 0;
-    	child4[0] = 0;
-    	for (int i = 1; i < HGENES+1; i++) {
-    		child1[i] = p1[i];
-    		child2[HGENES+i] = p1[HGENES+i];
-    		child1[HGENES+i] = p2[HGENES+i];
-    		child2[i] = p2[i];
-    		child3[i] = p1[HGENES+i];
-    		child4[HGENES+i] = p1[i];
-    		child3[HGENES+i] = p2[i];
-    		child4[i] = p2[HGENES+i];
-    	}
-    	fixOffspring(child1, child2);
-    	fixOffspring(child3, child4);
+		child1[0] = 0;
+		child2[0] = 0;
+		child3[0] = 0;
+		child4[0] = 0;
+	    	for (int i = 1; i < HGENES+1; i++) {
+	    		child1[i] = p1[i];
+	    		child2[HGENES+i] = p1[HGENES+i];
+	    		child1[HGENES+i] = p2[HGENES+i];
+	    		child2[i] = p2[i];
+	    		child3[i] = p1[HGENES+i];
+	    		child4[HGENES+i] = p1[i];
+	    		child3[HGENES+i] = p2[i];
+	    		child4[i] = p2[HGENES+i];
+	    	}
+	    	fixOffspring(child1, child2);
+	    	fixOffspring(child3, child4);
 	}
 	
-public void fixOffspring(int[] kid1, int[] kid2) {
-	int temp;
-	boolean stop;
-	for (int i = HGENES+1; i < TOTGENES; i++) {
-		for (int j = 1; j < HGENES+1; j++) {
-			if (kid1[i]==kid1[j]) {
-				stop = false;
-				for (int k = HGENES+1; k < TOTGENES && stop == false; k++) {
-					for (int l = 1; l < HGENES+1 && stop == false; l++) {
-						if (kid2[k] == kid2[l]) {
-							temp = kid2[k];
-							kid2[k] = kid1[i];
-							kid1[i]=temp;
-							stop = true;
+	public void fixOffspring(int[] kid1, int[] kid2) {
+		int temp;
+		boolean stop;
+		for (int i = HGENES+1; i < TOTGENES; i++) {
+			for (int j = 1; j < HGENES+1; j++) {
+				if (kid1[i]==kid1[j]) {
+					stop = false;
+					for (int k = HGENES+1; k < TOTGENES && stop == false; k++) {
+						for (int l = 1; l < HGENES+1 && stop == false; l++) {
+							if (kid2[k] == kid2[l]) {
+								temp = kid2[k];
+								kid2[k] = kid1[i];
+								kid1[i]=temp;
+								stop = true;
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-}
 
 	public double getTotSelected() {
 		return totSelected;
