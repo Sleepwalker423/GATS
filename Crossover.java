@@ -51,15 +51,16 @@ public class Crossover extends Elitism{
 		child1 = new int[TOTGENES];
 		child2 = new int[TOTGENES];
 		child1[0] = 0;
-    	child2[0] = 0;
-    	for (int i = 1; i < HGENES+1; i++) {
-    		child1[i] = p1[i];
-    		child2[HGENES+i] = p1[HGENES+i];
-    		child1[HGENES+i] = p2[HGENES+i];
-    		child2[i] = p2[i];
-    	}
-    	fixOffspring(child1, child2);
-}
+    		child2[0] = 0;
+    		for (int i = 1; i < HGENES+1; i++) {
+	    		child1[i] = p1[i];
+	    		child2[HGENES+i] = p1[HGENES+i];
+	    		child1[HGENES+i] = p2[HGENES+i];
+	    		child2[i] = p2[I];
+    		}
+		
+    		fixOffspring(child1, child2);
+	}
 	
 	public void setLastInd(int num) {
 		lastInd = num;
