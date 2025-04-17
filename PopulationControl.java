@@ -397,7 +397,7 @@ public class PopulationControl implements Runnable {
 		}
 	}
 	
-	//Finish in next sprint.
+	
 	public void printProgress() {
 		System.out.print("\033[H\033[2J");
 		System.out.println("Current Generation: "+lastGen+
